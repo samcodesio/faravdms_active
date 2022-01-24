@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'vdms',
     'account',
     'django_seed',
+    'django_countries',
 ]
 
 MIDDLEWARE = [
@@ -58,7 +59,7 @@ ROOT_URLCONF = 'faravdms.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -79,12 +80,12 @@ WSGI_APPLICATION = 'faravdms.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 
+        'ENGINE':
         'django.db.backends.postgresql',
-	        'NAME': 'faravdms',
-	        'USER': 'postgres',
-	        'PASSWORD' :'admin',
-	        'HOST':'localhost'
+        'NAME': 'faravdms',
+                'USER': 'postgres',
+                'PASSWORD': 'admin',
+                'HOST': 'localhost'
 
     }
 }
@@ -128,9 +129,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR,'static')
+    os.path.join(BASE_DIR, 'static')
 ]
-STATIC_ROOT = os.path.join(BASE_DIR,'assets')
+STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

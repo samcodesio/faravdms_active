@@ -11690,7 +11690,89 @@ body {
   border-radius: 0.25rem !important;
 }
 
+/* MY STYLES */
+
 .hello{
   margin: auto;
   color: white;
+}
+
+/* Providers Styles */
+.topic{
+  display: flex;
+  align-items: center;
+}
+
+.topic h1{
+  flex-grow: 1;
+}
+
+.topic h6{
+  margin-top: 1.5rem !important;
+}
+
+.step h5{
+  margin-bottom: 20px;
+}
+.step2form{
+  margin-top: 30px;
+}
+
+.input-group label{
+  width: 30%;
+}
+.input-group{
+  margin-bottom: 20px;
+}
+
+#contact-addon{
+  height: 100%;
+}
+
+.formbuttons{
+  margin-top: 50px;
+  margin-bottom: 80px;
+}
+.formbuttons button{
+  margin-right: 10px;
+}
+/* Providers Styles */
+
+/* Add Certificates Styles */
+.input-group .form-check{
+  margin-right: 20px;
+}
+
+.form-check-input:checked {
+  background-color: #149347 !important;
+  border-color: #149347 !important;
+}
+
+.formgrouplabel{
+  margin-bottom: 10px;
+}
+
+label{
+  font-weight: 500;
+}
+
+
+
+/* NAVBAR SEARCH */
+#searchid{
+  margin-bottom: 0 !important;
+}
+
+
+
+
+/* Model Form */
+#id_category_name::after{
+  content: '*';
+  font-size: large;
+}
+
+label::after{
+  content: ' *' !important;
+  color: #dc3545 !important;
 }
