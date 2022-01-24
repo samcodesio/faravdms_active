@@ -1,0 +1,127 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Goods</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
+      rel="stylesheet"
+    />
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body class="sb-nav-fixed">
+    {% include './navbar.html'%}
+    <div id="layoutSidenav">
+      {% include './sidenav.html'%}
+      <div id="layoutSidenav_content">
+        <main>
+          <div class="container-fluid px-4">
+            <div class="topic">
+            <h1 class="mt-4">Add a New Category</h1>
+            <h6 class="text-danger">Fill the form to add a new category</h6>
+          </div>
+            <ol class="breadcrumb mb-4">
+              <li class="breadcrumb-item">
+                <a href="index.html">Dashboard</a>
+              </li>
+              <li class="breadcrumb-item active">Goods</li>
+            </ol>
+            
+
+            <!-- STEP 1 -->
+
+            <div class="step">
+              
+            <form class="form-inline" role="form" action="{% url 'add_category' %}" method="POST">
+                {% csrf_token %}
+                
+
+                <!-- <div class="form-group">
+                  <div class="row">
+                  <div class="col-md-6">
+                {{form}}
+              </div>
+                </div>
+              </div> -->
+              
+              <div class="row">
+                <div class="col-md-6">
+                <div class="input-group">
+                  <label for="category_name">Category Name<span class="text-danger">  *<span></label>
+                  {{form.category_name}}
+                  </div>
+
+                  <div class="input-group">
+                    <label for="category_description">Category Description</label>
+                    {{form.category_description}}
+                    </div>
+
+                </div>
+
+                  <div class="col-md-6">
+                    <div class="input-group">
+                      <label for="category_code">Category Type<span class="text-danger">  *<span></label>
+                        {{form.category_code}}
+                    </div>
+                  </div>
+              
+                <!-- Buttons -->
+                <div class="formbuttons">
+                <button type="button" class="btn btn-danger">Cancel</button>
+                <button type="Submit" class="btn btn-success">Save</button>
+              </div>
+              <!-- Buttons -->
+             
+              <!-- STEP 2 -->
+
+            </form>
+        </div>
+            <!-- STEP 1 -->
+
+           
+
+            
+          </div>
+        </main>
+        <footer class="py-4 bg-light mt-auto">
+          <div class="container-fluid px-4">
+            <div
+              class="d-flex align-items-center justify-content-between small"
+            >
+              <div class="text-muted">Copyright &copy; Your Website 2021</div>
+              <div>
+                <a href="#">Privacy Policy</a>
+                &middot;
+                <a href="#">Terms &amp; Conditions</a>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="{% static 'js/scripts.js' %}"></script>
+    <script src="{% static 'js/myScripts.js' %}"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"
+      crossorigin="anonymous"
+    ></script>
+    <script src="{% static 'js/datatables-simple-demo.js' %}"></script>
+  </body>
+</html>

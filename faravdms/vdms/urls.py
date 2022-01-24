@@ -5,12 +5,11 @@ from . import views
 
 urlpatterns = [
     path('', views.index,name="index"),
-    path('goods',views.goods,name="goods"),
-    path('tender',views.tender,name="tender"),
-    path('add_Category',views.add_Category,name="add_Category"),
-    path('add_subCategory',views.add_subCategory,name="add_subCategory"),
-    path('add_User',views.add_User,name="add_User"),
-    path('add_Consultants',views.add_Consultatnts,name="add_Consultants"),
-    path('add_Certificates',views.add_Certificates,name="add_Certificates"),
-    path('add_Company',views.add_Company,name="add_Company"),
+    path('providers',views.providers,name="providers"),
+    path('add_providers',views.add_providers,name="add_providers"),
+    path('add_certificate',views.addCertificate,name="addCertificate"),
+    path('add_category',views.addCategory,name="add_category"),
+    path('add_subcategory',views.addSubCategory,name="addSubCategory"),
+    path('add_users',views.addUsers,name="addUsers"),
+    # path('tender',views.tender,name="tender"),
 ]
