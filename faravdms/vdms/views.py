@@ -24,3 +24,24 @@ def goods(request):
 
 def tender(request):
     return render(request,"tender.html")
+
+def error(request):
+    return render(request,"404.html")
+
+def add_Category(request):
+    return render(request,"add_Category.html",{'add_Category':add_Category})
+
+def add_subCategory(request):
+    return render(request,"add_subCategory.html",{'add_subCategory':add_subCategory}) 
+
+def add_Certificates(request):
+    return render(request,"add_Certificates.html",{'add_Certificates':add_Certificates}) 
+
+def add_Company(request):
+    return render(request,"add_Company.html",{'add_Company':add_Company}) 
+
+def add_Consultatnts(request):
+    return render(request,"add_Consultants.html",{'add_Consultants':add_Consultatnts}) 
+
+def add_User(request):
+    return render(request,"add_User.html",{'add_User':add_User}) 
