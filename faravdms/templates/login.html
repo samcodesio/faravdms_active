@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Login - SB Admin</title>
+        <title>FARA VDMS</title>
         <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
     </head>
@@ -24,6 +24,7 @@
                                     <div class="card-body">
                                         <form action="login" method="POST">
                                             {% csrf_token %}
+                                            
                                             <div class="form-floating mb-3">
                                                 <input class="form-control" id="username" name = "username" type="text" placeholder="Psername" />
                                                 <label for="inputUsername">Username</label>

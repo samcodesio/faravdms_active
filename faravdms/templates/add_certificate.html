@@ -11,7 +11,7 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Goods</title>
+    <title>FARA VDMS</title>
     <link
       href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
       rel="stylesheet"
@@ -45,41 +45,23 @@
 
             <div class="step">
               
-            <form class="form-inline" role="form">
+            <form class="form-inline" role="form" method="POST">
+              {% csrf_token %}
+           
               <div class="row">
                 <div class="col-md-6">
                   <div class="input-group">
                     <label for="companyname">Company Name<span class="text-danger">  *<span></span></label>
-                    <select
-                      class="form-select"
-                      aria-label="Company Select"
-                      name="companyname"
-                      id="companyname"
-                      required
-                    >
-                      <option value="cat1">Cat1</option>
-                      <option value="cat1">Cat1</option>
-                      <option value="cat1">Cat1</option>
-                      <option value="cat1">Cat1</option>
-                    </select>
+                    {{form.company_name}}
                   </div>
 
                    <!-- radio button -->
 
-                  <div class="input-group">
-                  <label for="introductoryletter">Introductory Letter</label>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="introductoryletteryes">
-                    <label class="form-check-label" for="introductoryletteryes">
-                      Yes
-                    </label>
-                  </div>
-                  <div class="form-check ">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="introductoryletterno" checked>
-                    <label class="form-check-label" for="introductoryletterno">
-                      No
-                    </label>
-                  </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="twocat" name="introductory_letter" >
+                  <label class="form-check-label" for="twocat">
+                    Do you have an Introductory Letter
+                  </label>
                 </div>
 
                 <!-- radio button -->
@@ -97,8 +79,8 @@
                     <div class="input-group">
 
                       
-                      <input type="text" class="form-control" placeholder="Enter Pin Number..."/>
-                      <input type="date" class="form-control" placeholder="Enter Issued Date yyyy-mm-dd" />
+                      {{form.business_registration_certificate}}
+                      {{form.business_registration_certificate_date}}
                       
                     </div>
   
@@ -117,13 +99,13 @@
                     <div class="input-group">
 
                       
-                      <input type="text" class="form-control" placeholder="Enter Pin Number..." />
+                      {{form.certificate_to_commence_business}}
                       
                     </div>
   
                   </div>
                   <div class="col-md-6">
-                    <input type="date" class="form-control" placeholder="Enter Issued Date yyyy-mm-dd"/>
+                    {{form.certificate_to_commence_business_date}}
                   </div>
                   <!-- Form group2 -->
 
@@ -133,16 +115,16 @@
                     <div class="input-group">
 
                       
-                      <input type="text" class="form-control" placeholder="Enter Pin Number..."/>
+                      {{form.valid_tax_clearance_certificate}}
                       
                     </div>
   
                   </div>
                   <div class="col-md-4">
-                    <input type="date" class="form-control" placeholder="Enter Issued Date yyyy-mm-dd" />
+                    {{form.valid_tax_clearance_certificate_date}}
                   </div>
                   <div class="col-md-4">
-                    <input type="date" class="form-control" placeholder="Enter Issued Date yyyy-mm-dd" />
+                    {{form.valid_tax_clearance_certificate_date_expired}}
                   </div>
                   <!-- Form group3 -->
 
@@ -152,13 +134,13 @@
                     <div class="input-group">
 
                       
-                      <input type="text" class="form-control" placeholder="Enter Pin Number..." />
+                      {{form.valid_vat_registration_certificate}}
                       
                     </div>
   
                   </div>
                   <div class="col-md-6">
-                    <input type="date" class="form-control" placeholder="Enter Issued Date yyyy-mm-dd" />
+                    {{form.valid_vat_registration_certificate_date}}
                   </div>
                   <!-- Form group4 -->
 
@@ -168,25 +150,28 @@
                     <div class="input-group">
 
                       
-                      <input type="text" class="form-control" placeholder="Enter Pin Number..." />
+                      {{form.valid_ssnit_clearance_certificate}}
                       
                     </div>
   
                   </div>
                   <div class="col-md-4">
-                    <input type="date" class="form-control" placeholder="Enter Issued Date yyyy-mm-dd" />
+                    {{form.valid_ssnit_clearance_certificate_date}}
                   </div>
                   <div class="col-md-4">
-                    <input type="date" class="form-control" placeholder="Enter Issued Date yyyy-mm-dd" />
+                    {{form.valid_ssnit_clearance_certificate_date_expired}}
                   </div>
                   <!-- Form group5 -->
                  
                 </div>
   
-                <!-- Buttons -->
-                <div class="formbuttons">
+               <!-- Buttons -->
+               <div class="formbuttons">
                 <button type="button" class="btn btn-danger">Cancel</button>
-                <button type="button" class="btn btn-success">Save</button>
+                <button type="Submit" class="btn btn-success">Save</button>
+                {% for message in messages%}
+            <h3>{{message}}</h3>
+            {% endfor %}
               </div>
               <!-- Buttons -->
              

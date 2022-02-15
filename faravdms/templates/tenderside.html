@@ -1,0 +1,61 @@
+<div class="col-md-2">
+
+      <div class="dropdown">
+        <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          Dropdown button
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" href="#">All Service Providers</a></li>
+          <li><a class="dropdown-item" href="{% url 'tender_category'%}">To a Category</a></li>
+          <li><a class="dropdown-item" href="{% url 'tender_sub_category' %}">To a Subcategory</a></li>
+          <li><a class="dropdown-item" href="{% url 'tender_consultant' %}">To Consultants</a></li>
+        </ul>
+      </div>
+
+    <div class="box box-solid">
+        <div class="box-header with-border">
+            <h3 class="box-title">Folders</h3>
+
+            <div class="box-tools">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                        class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <div class="box-body">
+            <ul class="revertflex nav nav-pills nav-stacked">
+                <li><a href="{% url 'sent'%}"><i class="fas fa-envelope"></i> Sent
+                        <span class="badge pull-right">
+                            {{sentmails.count}}</span></a></li>
+
+                <li><a href="draft_tender"><i class="fas fa-file-alt"></i> Drafts
+                        <span class="badge pull-right draft">
+                            1</span></a></li>
+            </ul>
+        </div>
+        <!-- /.box-body -->
+    </div>
+    <!-- /. box -->
+    <div class="box box-solid">
+        <div class="box-header with-border">
+            <h3 class="box-title">Labels</h3>
+
+            <div class="box-tools">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                        class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <div class="box-body">
+            <ul class="revertflex nav nav-pills nav-stacked">
+                <li><a href="#"><i class="far fa-circle text-red"></i> Important</a></li>
+                <li><a href="#"><i class="far fa-circle text-yellow"></i> Promotions</a>
+                </li>
+                <li><a href="#"><i class="far fa-circle text-light-blue"></i> Social</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+</div>

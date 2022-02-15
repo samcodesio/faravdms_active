@@ -2,6 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+  
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -11,7 +12,7 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Goods</title>
+    <title>FARA VDMS</title>
     <link
       href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
       rel="stylesheet"
@@ -40,195 +41,194 @@
               <li class="breadcrumb-item active">Goods</li>
             </ol>
             
+            {% if user.is_authenticated and user.is_staff %}
+            {% comment %} {% if user.role == 3 %} {% endcomment %}
+            <form class="form-inline" role="form" action="{% url 'add_users'%}" method="POST">
+              {% csrf_token %}
+              {{form.as_p}}
+              {% comment %} {{form.username.label}}
+              {{form.username}}
 
-            <!-- STEP 1 -->
+              {{form.first_name.label}}
+              {{form.first_name}}
 
-            <div class="step">
+              {{form.last_name.label}}
+              {{form.last_name}}
 
-            
-            <form class="form-inline" role="form">
-            
-      <!-- STEP 1 -->
-              <!-- STEP 2 -->
+              {{form.email.label}}
+              {{form.email}}
 
-          <fieldset class="step2form step">
+              {{form.password1.label}}
+              {{form.password1}}
 
+              {{form.password2.label}}
+              {{form.password2}} {% endcomment %}
 
-           
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="input-group">
-                    <label for="surname">Surname<span class="text-danger">  *<span></label>
-                    <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Enter Surname"
-                    id="surname"
-                    required
-                  />
-                  </div>
+              <fieldset class="step2form step">
 
-                  <div class="input-group">
-                  <label for="firstname">First Name<span class="text-danger">  *<span></label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Enter First Name"
-                    id="firstname"
-                    required
-                  />
-                  </div>
-
-                  <div class="input-group">
-                    <label for="othernames">Other Name(s)</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Enter Other Name(s)"
-                      id="othernames"
-                    />
-                    </div>
-
-                    <div class="input-group">
-                      <label for="gender">Gender<span class="text-danger">  *<span></label>
+               
+              
+               
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="input-group">
+                        <label for="username">Username<span class="text-danger">  *<span></label>
+                        <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter Username"
+                        name="username"
+                        id="username"
+                        required
+                      />
+                      </div>
+              
+                      <div class="input-group">
+                      <label for="firstname">First Name<span class="text-danger">  *<span></label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter First Name"
+                        id="firstname"
+                        name="firstname"
+                        required
+                      />
+                      </div>
+              
+                      <div class="input-group">
+                      <label for="lastname">Last Name<span class="text-danger">  *<span></label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter Last Name"
+                        id="lastname"
+                        name="lastname"
+                        required
+                      />
+                      </div>
+              
+              
+                      <div class="input-group">
+                        <label for="gender">Gender</label>
                         <select
                         class="form-select"
-                        aria-label="Gender Select"
-                        name="Gender"
+                        aria-label="Gender"
+                        name="gender"
                         id="gender"
                         required
                       >
-                        <option value="cat1">Male</option>
-                        <option value="cat1">Female</option>
-                      </select>
-                      </div>
-
-                  <div class="input-group">
-                  <label for="emailaddress">Email Address<span class="text-danger">  *<span></label>
-                  <input
-                    type="email"
-                    class="form-control"
-                    placeholder="Enter Email Address"
-                    id="emailaddress"
-                    required
-                  />
-                  </div>
+                      <option value="none" selected disabled hidden>--Select Gender--</option>
                   
-
-                      <div class="input-group">
-                        <label for="contact">Contact<span class="text-danger">  *<span></label>
-                        <div class="input-group-prepend">
-                          <span class="input-group-text " id="contact-addon"><i class="fas fa-phone-alt"></i></span>
+                      </select>
                         </div>
-                          <input id="contact" type="text" class="form-control" name="contact" placeholder="Enter Contact" required>
-                        </div>
-
-                       
-                      
-
-                </div>
-
-                <!-- SECOND COLUMN -->
-
-                <div class="col-md-6">
-
-                  <div class="input-group">
-                    <label for="altcontact">Alt. Contact</label>
-                    <div class="input-group-prepend">
-                      <span class="input-group-text " id="contact-addon"><i class="fas fa-phone-alt"></i></span>
-                    </div>
-                      <input id="altcontact" type="text" class="form-control" name="contact" placeholder="Enter Alternate Contact" required >
-                    </div>
-
-                  <div class="input-group">
-                    <label for="accesslevel">Access Level<span class="text-danger">  *<span></label>
-                    <select
-                      class="form-select"
-                      aria-label="accesslevel Select"
-                      name="accesslevel"
-                      id="accesslevel"
-                      required
-                    >
-                      <option value="cat1">Read</option>
-                      <option value="cat1">Write</option>
-                      <option value="cat1">Administrator</option>
-                      
-                    </select>
-                  </div>
-
-                  <div class="input-group">
-                  <label for="username">Username<span class="text-danger">  *<span></label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Enter Username..."
-                    id="username"
-                    required
-                  />
-                  </div>
-
-                  <div class="input-group">
-                  <label for="password">Password<span class="text-danger">  *<span></label>
-                    <input
-                    type="password"
-                    class="form-control"
-                    placeholder="Enter Password..."
-                    id="password"
-                    required
-                  />
-                  </div>
-
-                  <div class="input-group">
-                    <label for="cpassword">Confirm Password<span class="text-danger">  *<span></label>
-                      <input
-                      type="password"
-                      class="form-control"
-                      placeholder="Enter Password..."
-                      id="cpassword"
-                      required
-                    />
-                    </div>
-
-                    <div class="input-group">
-                      <label for="status">Status<span class="text-danger">  *<span></label>
-                      <select
-                        class="form-select"
-                        aria-label="status Select"
-                        name="status"
-                        id="status"
-                        required
-                      >
-                        <option value="cat1">Active</option>
-                        <option value="cat1">Inactive</option>
+              
                         
-                      </select>
+              
+                          <div class="input-group">
+                            <label for="contact">Contact<span class="text-danger">  *<span></label>
+                            <div class="input-group-prepend">
+                              <span class="input-group-text " id="contact-addon"><i class="fas fa-phone-alt"></i></span>
+                            </div>
+                              <input id="contact" type="text" class="form-control" name="contact" placeholder="Enter Contact" required>
+                            </div>
+              
+                            <div class="input-group">
+                              <label for="altcontact">Alt. Contact</label>
+                              <div class="input-group-prepend">
+                                <span class="input-group-text " id="contact-addon"><i class="fas fa-phone-alt"></i></span>
+                              </div>
+                                <input id="altcontact" type="text" class="form-control" name="contact2" placeholder="Enter Alternate Contact" required >
+                              </div>
+                          
+              
                     </div>
-
-                  
-                  
-      
+              
+                    <!-- SECOND COLUMN -->
+              
+                    <div class="col-md-6">
+                      <div class="input-group">
+                        <label for="accesslevel">Access Level<span class="text-danger">  *<span></label>
+                        <select
+                          class="form-select"
+                          aria-label="Access Select"
+                          name="accesslevel"
+                          id="accesslevel"
+                          required
+                        >
+                        <option value="none" selected disabled hidden>--Select Access--</option>
+                        
+                          <option value=""></option>
+                      
+                        </select>
+                      </div>
+              
+                      <div class="input-group">
+                      <label for="password">Password<span class="text-danger">  *<span></label>
+                      <input
+                        type="password"
+                        class="form-control"
+                        placeholder="Enter Password"
+                        name="password"
+                        id="password"
+                        required
+                      />
+                      </div>
+              
+                      <div class="input-group">
+                      <label for="password2">Confirm Password<span class="text-danger">  *<span></label>
+                        <input
+                        type="password"
+                        class="form-control"
+                        placeholder="Re-Enter Password"
+                        name="password2"
+                        id="password2"
+                        required
+                      />
+                      </div>
+              
+                      <div class="input-group">
+                        <label for="status">Status<span class="text-danger">  *<span></label>
+                          <select
+                          class="form-select"
+                          aria-label="Status Select"
+                          name="status"
+                          id="status"
+                          required
+                        >
+                        <option value="none" selected disabled hidden>--Select Status--</option>
+                        
+                          <option value=""></option>
+                      
+                        </select>
+                        </div>
+            
+              
+                    </div>
+              
+                     <!-- SECOND COLUMN -->
+                    
+                  </div>
+              
+                  <!-- Buttons -->
+                  <div class="formbuttons">
+                    <button type="button" class="btn btn-danger">Cancel</button>
+                    <button type="Submit" class="btn btn-success">Save</button>
+                 
+                  {% for message in messages%}
+                          <h3>{{message}}</h3>
+                          {% endfor %}
                 </div>
+                <!-- Buttons -->
+              </fieldset>
 
-                 <!-- SECOND COLUMN -->
-                
-              </div>
-
-              <!-- Buttons -->
-              <div class="formbuttons">
-              <button type="button" class="btn btn-danger">Cancel</button>
-              <button type="button" class="btn btn-success">Save</button>
-            </div>
-            <!-- Buttons -->
-          </fieldset>
-            <!-- STEP 2 -->
+              
             </form>
-        </div>
-            
-
-            
-
-            
-          </div>
+            <!-- STEP 1 -->
+            {%else%}
+              <h1 class="text-danger">You are not allowed to access this page</h1>
+              <p>Contact Admin for more info</p>
+            {% endif %}
+      
         </main>
         <footer class="py-4 bg-light mt-auto">
           <div class="container-fluid px-4">

@@ -7,53 +7,35 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-chart-line"></i></div>
                     Dashboard
                 </a>
-                
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-                    <div class="sb-nav-link-icon"><i class="fas fa-shopping-cart"></i></div>
-                    Goods Suppliers
-                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                </a>
-                <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                    <nav class="sb-sidenav-menu-nested nav">
-<<<<<<< HEAD
-                        <a class="nav-link" href="goods">401 Page</a>
-                        <a class="nav-link" href="404">404 Page</a>
-                        <a class="nav-link" href="500.html">500 Page</a>
-=======
-                        <a class="nav-link" href="providers">Goods</a>
-                        <a class="nav-link" href="layout-sidenav-light.html">Consultancy</a>
->>>>>>> sammy_update
-                    </nav>
-                </div>
 
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
+
+                <a class="nav-link" href="{% url 'goods' %}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-mail-bulk"></i></div>
+                    Goods
+                </a>
+
+                <a class="nav-link" href="{% url 'services' %}">
                     <div class="sb-nav-link-icon"><i class="fab fa-ups"></i></div>
-                    Service Providers
-                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    Services
                 </a>
-                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                    <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="login">Login</a>
-                        <a class="nav-link" href="register.html">Register</a>
-                        <a class="nav-link" href="password.html">Forgot Password</a>
-                    </nav>
-                </div>
 
-                
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                <a class="nav-link" href="{% url 'add_consultant' %}">
                     <div class="sb-nav-link-icon"><i class="fas fa-male"></i></div>
                     Consultants
-                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
-                <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne">
-                    <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="goods">Goods Supliers</a>
-                        <a class="nav-link" href="goods">Services Providers</a>
-                        <a class="nav-link" href="layout-sidenav-light.html"> Individual Consultants</a>
-                    </nav>
-                </div>
+
+                
+                <a class="nav-link" href="{% url 'providers' %}">
+                    <div class="sb-nav-link-icon"><i class="fab fa-ups"></i></div>
+                    All Service Providers
+                </a>
+
+                
+
+
+                
         
-                <a class="nav-link" href="tender">
+                <a class="nav-link" href="{% url 'tender' %}">
                     <div class="sb-nav-link-icon"><i class="fas fa-mail-bulk"></i></div>
                     Tender
                 </a>
@@ -73,13 +55,12 @@
                 <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                      
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="goods"> Add user </a>  
-                        <a class="nav-link" href="add_Category"> Add Category </a> 
-                        <a class="nav-link" href="add_subCategory"> Add Sub-Category </a> 
-                        <a class="nav-link" href="add_Certificates"> Add Cerfificate Information </a> 
-                        <a class="nav-link" href="add_Company"> Add Company </a> 
-                        <a class="nav-link" href="add_Consultants"> Add Consultant </a> 
-                        <a class="nav-link" href="add_User"> Add User </a> 
+                        <a class="nav-link" href="{% url 'add_users' %}"> Add user </a>  
+                        <a class="nav-link" href="{% url 'add_category' %}"> Add Category </a> 
+                        <a class="nav-link" href="{% url 'addSubCategory' %}"> Add Sub-Category </a> 
+                        <a class="nav-link" href="{% url 'addCertificate' %}"> Add Cerfificate Information </a> 
+                        <a class="nav-link" href="{% url 'add_providers' %}"> Add Company </a> 
+                        <a class="nav-link" href="add_consultant"> Add Consultant </a> 
                          
                        
                     </nav>

@@ -11,7 +11,7 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Goods</title>
+    <title>FARA VDMS</title>
     <link
       href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
       rel="stylesheet"
@@ -30,7 +30,7 @@
         <main>
           <div class="container-fluid px-4">
             <div class="topic">
-            <h1 class="mt-4">Add a New Category</h1>
+            <h1 class="mt-4">Add a New Sub Category</h1>
             <h6 class="text-danger">Fill the form to add a new category</h6>
           </div>
             <ol class="breadcrumb mb-4">
@@ -45,50 +45,33 @@
 
             <div class="step">
               
-            <form class="form-inline" role="form">
+            <form class="form-inline" role="form" method="POST">
+              {% csrf_token %}
               <div class="row">
 
                 <div class="col-md-6">
                   <div class="input-group">
                     <label for="categorytype">Category Type<span class="text-danger">  *<span></label>
-                    <select
-                      class="form-select"
-                      aria-label="CategoryType Select"
-                      name="CategoryType"
-                      id="categorytype"
-                      required
-                    >
-                      <option value="cat1">Cat1</option>
-                      <option value="cat1">Cat1</option>
-                      <option value="cat1">Cat1</option>
-                      <option value="cat1">Cat1</option>
-                    </select>
+                    {{form.category}}
                   </div>
                 </div>
 
                 <div class="col-md-6">
                 <div class="input-group">
                   <label for="categorycode">Sub Category<span class="text-danger">  *<span></label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Enter Category Code"
-                    id="categorycode"
-                    required
-                  />
+                  {{form.sub_category_name}}
                   </div>
                 </div>
 
 
-
-                  
-              
-                
   
                 <!-- Buttons -->
                 <div class="formbuttons">
                 <button type="button" class="btn btn-danger">Cancel</button>
-                <button type="button" class="btn btn-success">Save</button>
+                <button type="Submit" class="btn btn-success">Save</button>
+                {% for message in messages%}
+            <h3>{{message}}</h3>
+            {% endfor %}
               </div>
               <!-- Buttons -->
              

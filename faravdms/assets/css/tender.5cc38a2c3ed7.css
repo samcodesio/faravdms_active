@@ -1,0 +1,12 @@
+/* Tender Category Styles */
+.select2-selection.select2-selection--multiple{
+    display: flex;
+  }
+  
+  span[data-select2-id] {
+    width: 100% !important;
+  }
+
+  .dropdown button.btn {
+    width: 100% !important;
+}

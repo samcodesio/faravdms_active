@@ -11,16 +11,18 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Goods</title>
+    <title>FARA VDMS</title>
     <link
       href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
       rel="stylesheet"
     />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
       crossorigin="anonymous"
     ></script>
+    
   </head>
   <body class="sb-nav-fixed">
     {% include './navbar.html'%}
@@ -30,7 +32,13 @@
         <main>
           <div class="container-fluid px-4">
             <div class="topic">
-            <h1 class="mt-4">Add Providers</h1>
+              
+
+            {% if action == 'create' %}
+            <h1 class="mt-4">Add Provider</h1>
+            {% elif action == 'update' %}
+            <h1 class="mt-4">Update Provider</h1>
+            {% endif %}
             <h6 class="text-danger">Fill the form to add a new service provider</h6>
           </div>
             <ol class="breadcrumb mb-4">
@@ -46,211 +54,280 @@
             <div class="step">
 
             
-            <form class="form-inline" role="form" action="add_providers" method="POST" id="addProviders">
+            <form class="form-inline" role="form" action="" method="POST" id="addProviders">
               {% csrf_token %}
-              {% comment %} {% for providers in providersDict %} {% endcomment %}
-              <fieldset>
-              <h5>Step 1: Select Categories</h5>
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="input-group">
-                    <label for="category">Category<span class="text-danger">  *<span></label>
-                    <select
-                      class="form-select"
-                      aria-label="Category Select"
-                      name="category"
-                      id="category"
-                      required
-                    >
-                    <option value="none" selected disabled hidden>--Select Category--</option>
-                    {% for category in categories %}
-                      <option value={{category.id}}>{{category.category_name}}
-                    {% endfor %}
-                    </select>
-                  </div>
+              
+<fieldset class="step2form step">
+  <h5>Step 1: Select Categories</h5>
 
-                  <div class="input-group">
+
+    <div class="row">
+      <div class="col-md-6" >
+        
+        <div class="input-group">
+          <label for="category">Category<span class="text-danger">  *<span></label>
+          <select
+            class="form-select"
+            aria-label="Category Select"
+            name="category"
+            id="category"
+            required
+          >
+          <option value="none" selected disabled hidden>--Select Category--</option>
+        
+          </select>
+        </div>
+
+
+        <div class="input-group">
                     <label for="subcategory">Sub Category<span class="text-danger">  *<span></label>
-                    <input  class="form-select" list="subcategoryitem" id="subcategory" name="subcategory" />
-                    <datalist id="subcategoryitem">
-                      {% for subcategory in subcategories %}
-                        <option value={{subcategory.id}}>{{subcategory.sub_category_name}}</option>
-                      {% endfor %}
-                  </datalist>
+                      <select
+            class="form-select js-example-basic-multiple"
+            aria-label="Category Select"
+            name="subcategory"
+            id="subcategory"
+            multiple="multiple"
+            required
+          >
+          <option value="none" selected disabled hidden id="defaultText">--Select Sub Category--</option>
+     
+          </select>
                   
-                </div>
-                </div>
-              </div>
-            </fieldset>
-      <!-- STEP 1 -->
-              <!-- STEP 2 -->
+        </div>
 
-          <fieldset class="step2form step">
+      <!-- radio button -->
 
-            <h5>Step 2: Company Details</h5>
+      <div class="input-group">
+        <label for="numofcat">Number of Categories</label>
+        
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="twocat" name="no_of_categories" >
+          <label class="form-check-label" for="twocat">
+            Two
+          </label>
+        </div>
+      </div>
 
-           
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="input-group">
-                    <label for="companyname">Company Name<span class="text-danger">  *<span></label>
-                    <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Enter Company Name"
-                    name="companyname"
-                    id="companyname"
-                    required
-                  />
-                  </div>
+      <!-- radio button -->
 
-                  <div class="input-group">
-                  <label for="postaladdress">Postal Address<span class="text-danger">  *<span></label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Enter Postal Address"
-                    id="postaladdress"
-                    name="postaladdress"
-                    required
-                  />
-                  </div>
+        
 
-                  <div class="input-group">
-                  <label for="emailaddress">Email Address<span class="text-danger">  *<span></label>
-                  <input
-                    type="email"
-                    class="form-control"
-                    placeholder="Enter Email Address"
-                    id="emailaddress"
-                    name="emailaddress"
-                    required
-                  />
-                  </div>
+            
+            
+
+      </div>
+
+      <!-- SECOND COLUMN -->
+
+      <div class="col-md-6 idle" id="catsubcat2">
+        <div class="input-group">
+          <label for="category2">Category<span class="text-danger">  *<span></label>
+            <select
+              class="form-select"
+              aria-label="Category Select"
+              name="category2"
+              id="category2"
+              required
+            >
+            <option value="none" selected disabled hidden>--Select Category--</option>
+        
+            </select>
+        </div>
 
 
-                  <div class="input-group">
-                    <label for="altemailaddress">Alt. Email Address</label>
-                    <input
-                      type="email"
-                      class="form-control"
-                      placeholder="Enter Alternate Email Address"
-                      id="altemailaddress"
-                      name="altemailaddress"
-                    />
-                    </div>
+        <div class="input-group">
+          <label for="subcategory2">Sub Category<span class="text-danger">  *<span></label>
+            <select
+            class="form-select js-example-basic-multiple"
+            aria-label="Category Select"
+            name="subcategory2"
+            id="subcategory2"
+            required
+            multiple="multiple"
+          >
+          <option value="none" selected disabled hidden id="defaultText">--Select Sub Category--</option>
+          
+          </select>
+        
+      </div>
 
-                    
-
-                      <div class="input-group">
-                        <label for="contact">Contact<span class="text-danger">  *<span></label>
-                        <div class="input-group-prepend">
-                          <span class="input-group-text " id="contact-addon"><i class="fas fa-phone-alt"></i></span>
-                        </div>
-                          <input id="contact" type="text" class="form-control" name="contact" placeholder="Enter Contact" required>
-                        </div>
-
-                        <div class="input-group">
-                          <label for="altcontact">Alt. Contact</label>
-                          <div class="input-group-prepend">
-                            <span class="input-group-text " id="contact-addon"><i class="fas fa-phone-alt"></i></span>
-                          </div>
-                            <input id="altcontact" type="text" class="form-control" name="altcontact" placeholder="Enter Alternate Contact" required >
-                          </div>
-                      
-
-                </div>
-
-                <!-- SECOND COLUMN -->
-
-                <div class="col-md-6">
-                  <div class="input-group">
-                    <label for="country">Country<span class="text-danger">  *<span></label>
-                    <select
-                      class="form-select"
-                      aria-label="Country Select"
-                      name="country"
-                      id="country"
-                      required
-                    >
-                    <option value="none" selected disabled hidden>--Select Country--</option>
-                    {% for country in countries %}
-                      <option value="cat1">{{country.0}}</option>
-                    {% endfor %}
-                    </select>
-                  </div>
-
-                  <div class="input-group">
-                  <label for="localarea">Local Area<span class="text-danger">  *<span></label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Enter Local Area"
-                    name="localarea"
-                    id="localarea"
-                    required
-                  />
-                  </div>
-
-                  <div class="input-group">
-                  <label for="typeoffirm">Type of Firm<span class="text-danger">  *<span></label>
-                  <select
-                      class="form-select"
-                      aria-label="Type of Firm"
-                      name="typeoffirm"
-                      id="typeoffirm"
-                      required
-                    >
-                    <option value="none" selected disabled hidden>--Select Type of Firm--</option>
-                    {% for typeoffirm in typeoffirms %}
-                      <option value="cat1">{{typeoffirm.0}}</option>
-                    {% endfor %}
-                    </select>
-                  </div>
-
-                  <div class="input-group">
-                    <label for="dateofregistration">Date of Registration<span class="text-danger">  *<span></label>
-                    <input
-                      type="date"
-                      class="form-control"
-                      placeholder="yyyy-mm-dd"
-                      name="dateofregistration"
-                      id="dateofregistration"
-                      required
-                    />
-                    </div>
-
-                  <div class="input-group">
-                    <label for="classification">Classification<span class="text-danger">  *<span></label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Enter Classification..."
-                      id="classification"
-                      name="classification"
-                      required
-                    />
-                    </div>
       
-                </div>
 
-                 <!-- SECOND COLUMN -->
-                
+       <!-- SECOND COLUMN -->
+      
+    </div>
+
+    
+</fieldset>
+{% comment %} new {% endcomment %}
+            
+
+<fieldset class="step2form step">
+
+  <h5>Step 2: Company Details</h5>
+
+ 
+    <div class="row">
+      <div class="col-md-6">
+        <div class="input-group">
+          <label for="companyname">Company Name<span class="text-danger">  *<span></label>
+          <input
+          type="text"
+          class="form-control"
+          placeholder="Enter Company Name"
+          name="companyname"
+          id="companyname"
+          required
+        />
+        </div>
+
+        <div class="input-group">
+        <label for="postaladdress">Postal Address<span class="text-danger">  *<span></label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter Postal Address"
+          id="postaladdress"
+          name="postaladdress"
+          required
+        />
+        </div>
+
+        <div class="input-group">
+        <label for="emailaddress">Email Address<span class="text-danger">  *<span></label>
+        <input
+          type="email"
+          class="form-control"
+          placeholder="Enter Email Address"
+          id="emailaddress"
+          name="emailaddress"
+          required
+        />
+        </div>
+
+
+        <div class="input-group">
+          <label for="altemailaddress">Alt. Email Address</label>
+          <input
+            type="email"
+            class="form-control"
+            placeholder="Enter Alternate Email Address"
+            id="altemailaddress"
+            name="altemailaddress"
+          />
+          </div>
+
+          
+
+            <div class="input-group">
+              <label for="contact">Contact<span class="text-danger">  *<span></label>
+              <div class="input-group-prepend">
+                <span class="input-group-text " id="contact-addon"><i class="fas fa-phone-alt"></i></span>
+              </div>
+                <input id="contact" type="text" class="form-control" name="contact" placeholder="Enter Contact" required>
               </div>
 
-              <!-- Buttons -->
-              <div class="formbuttons">
-              <button type="button" class="btn btn-danger">Cancel</button>
-              <button type="Submit" class="btn btn-success">Save</button>
-            </div>
-            <!-- Buttons -->
-          </fieldset>
+              <div class="input-group">
+                <label for="altcontact">Alt. Contact</label>
+                <div class="input-group-prepend">
+                  <span class="input-group-text " id="contact-addon"><i class="fas fa-phone-alt"></i></span>
+                </div>
+                  <input id="altcontact" type="text" class="form-control" name="contact2" placeholder="Enter Alternate Contact" required >
+                </div>
+            
+
+      </div>
+
+      <!-- SECOND COLUMN -->
+
+      <div class="col-md-6">
+        <div class="input-group">
+          <label for="country">Country<span class="text-danger">  *<span></label>
+          <select
+            class="form-select"
+            aria-label="Country Select"
+            name="country"
+            id="country"
+            required
+          >
+          <option value="none" selected disabled hidden>--Select Country--</option>
+           {% for countrys in providersDict.country %}
+            <option value="{{countrys.0}}">{{countrys.0}}</option>
+          {% endfor %} 
+          </select>
+        </div>
+
+        <div class="input-group">
+        <label for="localarea">Local Area<span class="text-danger">  *<span></label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter Local Area"
+          name="localarea"
+          id="localarea"
+          required
+        />
+        </div>
+
+        <div class="input-group">
+        <label for="typeoffirm">Type of Firm<span class="text-danger">  *<span></label>
+        <select
+            class="form-select"
+            aria-label="Type of Firm"
+            name="typeoffirm"
+            id="typeoffirm"
+            required
+          >
+          <option value="none" selected disabled hidden>--Select Type of Firm--</option>
+          {% for typeoffirms in providersDict.typeoffirm %}
+            <option value="{{typeoffirms.0}}">{{typeoffirms.0}}</option>
+          {% endfor %}
+          </select>
+        </div>
+
+        <div class="input-group">
+          <label for="dateofregistration">Date of Registration<span class="text-danger">  *<span></label>
+          <input
+            type="date"
+            class="form-control"
+            placeholder="yyyy-mm-dd"
+            name="dateofregistration"
+            id="dateofregistration"
+            required
+          />
+          </div>
+
+        <div class="input-group">
+          <label for="classification">Classification</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Enter Classification..."
+            id="classification"
+            name="classification"
+            required
+          />
+          </div>
+
+      </div>
+
+       <!-- SECOND COLUMN -->
+      
+    </div>
+
+    <!-- Buttons -->
+    <div class="formbuttons">
+    <button type="button" class="btn btn-danger">Cancel</button>
+    <button type="Submit" class="btn btn-success">Save</button>
+    {% for message in messages%}
+            <h3>{{message}}</h3>
+            {% endfor %}
+  </div>
+  <!-- Buttons -->
+</fieldset>
             <!-- STEP 2 -->
             
             </form>
-            {% if msg %}
-        <h1>{{msg}}</h1>
-        {% endif %}  
         </div>
           
 
@@ -286,21 +363,9 @@
     ></script>
     <script src="{% static 'js/datatables-simple-demo.js' %}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script>
-      $("#category").change(function(){
-        const url = $("#addProviders").attr(""); //get the url of the add providers view
-        const categoryId = $(this).val(); // get the selected country ID from the HTML input
-
-        $.ajax({
-          url:url,
-          data:{
-            'categoryId':categoryId //add the country ID to the GET Parameters
-          },
-          success: function(data){ // data is the return of the subcategory view function
-            $("#subCategory").html(data); //replace the contents of the subcategory input with the data that came from the server
-          }
-        })
-      })
-    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    
+    <script src="{% static 'js/myScripts.js' %}"></script>
   </body>
 </html>

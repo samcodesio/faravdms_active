@@ -21,6 +21,7 @@ from django.urls.conf import include
 urlpatterns = [
     path('', include('vdms.urls')),
     path('admin/', admin.site.urls),
-    path('vdms/',include('vdms.urls')),
     path('account/',include('account.urls'))
 ]
+
+handler404 = 'vdms.views.error_404_view'
