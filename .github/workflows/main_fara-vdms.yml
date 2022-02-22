@@ -60,4 +60,4 @@ jobs:
         with:
           app-name: 'FARA-VDMS'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_F51678D0BDEB49799F2CE0A173C37993 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0CBDE55170304E7393F8E1D617ED373C }}
