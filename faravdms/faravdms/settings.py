@@ -27,7 +27,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = False
 # DEBUG = config('DEBUG',cast=bool)
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['vdms.faraafrica.org']
 
 
 # Application definition
@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django_countries',
     'django_filters',
     'ckeditor',
+    'import_export',
 ]
 
 MIDDLEWARE = [

@@ -7,6 +7,9 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('', views.index,name="index"),
+    
+    path('upload',views.simple_upload,name="upload"),
+    
     path('account/login/', auth_views.LoginView.as_view()),
     
     path('providers',views.all_providers,name="providers"),

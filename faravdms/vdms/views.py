@@ -40,10 +40,117 @@ from django.core.mail import EmailMessage
 # Login decorators to restrict views
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
+
+from .resources import ProvidersResource
+from tablib import Dataset
 #
 
-def error_404_view(request,exception):
+
+@login_required
+def simple_upload(request):
+    if request.method == 'POST':
+        provider_resource = ProvidersResource()
+        dataset = Dataset()
+        # data = dataset.load(BOOK_DATA, format="json")
+        new_provider = request.FILES['myfile']
+
+        if not new_provider.name.endswith('xlsx'):
+            messages.info(request, 'wrong format')
+            return render(request, 'upload.html')
+
+        imported_data = dataset.load(new_provider.read(), format='xlsx')
+        # result = provider_resource.import_data(imported_data, raise_errors=True, dry_run=False)
+        print(imported_data)
+        for data in imported_data:
+            print("HELLOOOO",data[1:6])
+            value = ProviderInfo(
+                # data 
+                id=data[0],
+                # category=data[1],
+                no_of_categories=data[2],
+                # sub_categories=data[3],
+                company_name=data[4],
+                postal_address=data[5],
+                email_address=data[6],
+                altemail_address=data[7],
+                contact=data[8],
+                altcontact=data[9],
+                country=data[10],
+                local_area=data[11],
+                type_of_firm=data[12],
+                date_of_registration=data[13],
+                classification=data[14],
+            )
+            value.save()
+            # value.get_categories = data[1]
+            category_id = data[1]
+            category = Category.objects.get(category_name=category_id)
+            value.category.add(category)
+            
+            sub_category_id = data[3]
+            subcategory = SubCategory.objects.get(sub_category_name=sub_category_id)
+            value.sub_categories.add(subcategory)
+            
+
+    return render(request, 'upload.html')
+
+
+# def simple_upload(request):
+#     if request.method == 'POST':
+#         provider_resource = ProvidersResource()
+#         dataset = Dataset()
+#         new_provider = request.FILES['myfile']
+
+#         if not new_provider.name.endswith('xlsx'):
+#             messages.info(request, 'wrong format')
+#             return render(request, 'upload.html')
+
+#         imported_data = dataset.load(new_provider.read(), format='xlsx')
+#         for data in imported_data:
+#             # provider = Category.objects.get(category_name = data[1])
+#             value = ProviderInfo(
+#                 id=data[0],
+#                 # category=data[1],
+#                 no_of_categories=data[2],
+#                 # sub_categories=data[3],
+#                 company_name=data[4],
+#                 postal_address=data[5],
+#                 email_address=data[6],
+#                 altemail_address=data[7],
+#                 contact=data[8],
+#                 altcontact=data[9],
+#                 country=data[10],
+#                 local_area=data[11],
+#                 type_of_firm=data[12],
+#                 date_of_registration=data[13],
+#                 classification=data[14],
+#                 # data[13],
+#                 # data[14],
+#                 # data[15],
+#             )
+#             # if value.save():
+#             #     value.category.add(data[13])
+#             #     value.sub_categories.add(data[14])
+
+#             # value.category.add(data[1])
+#             # value.sub_categories.add(data[3])
+#             # value.category.set(data[1])
+#             # value.objects.get(id)
+#             # value.category.add(data[1])
+#             value.save()
+
+#             # value.category.add(provider)
+
+#             value.category.add(id=data[0])
+#             value.category.set(category_name=data[1])
+#             value.sub_categories.set(data[3])
+
+#     return render(request, 'upload.html')
+
+
+def error_404_view(request, exception):
     return render(request, '404.html')
+
 
 @login_required
 def index(request):
@@ -81,6 +188,7 @@ def all_providers(request):
 @login_required
 def add_providers(request):
     if request.method == "POST":
+
         company_name = request.POST['companyname']
         postal_address = request.POST['postaladdress']
         email_address = request.POST['emailaddress']
@@ -154,6 +262,7 @@ def get_json_category_data(request):
     return JsonResponse({'data': catval})
 
 # -------------------(Getting SubCategory Values filterd by Category Selected) -------------------
+
 
 @login_required
 def get_json_subcat_data(request, *args, **kwargs):
@@ -398,20 +507,20 @@ def goods_filter(request):
     # context = {'goods': goods}
     # subcategory in provider.sub_categories.all
     # providers = SubCategory.objects.all().filter(sub_categories__sub_category_name = "Goods")
-    
+
     # providers = ProviderInfo.objects.all().filter(category__category_name = "Goods")
     # providers = ProviderInfo.objects.filter(sub_categories__category__category_name = "Goods")
-    
+
     # providers = ProviderInfo.objects.filter(sub_categories__category__category_name = "Goods")
-    # print("Print Providers :", providers)
-    # myFilter = goodsFilter(request.GET, queryset=providers)
-    # providers = myFilter.qs
-    
+    print("Print Providers :", providers)
+
+    myFilter = goodsFilter(request.GET, queryset=providers)
+    providers = myFilter.qs
+    print(myFilter.qs)
     # print("Print Providers 2 :", providers)
-    # context = {'providers': providers,'myFilter':myFilter}
-    context = {'providers': providers}
-    
-    
+    context = {'providers': providers, 'myFilter': myFilter}
+    # context = {'providers': providers}
+
     return render(request, 'goods.html', context)
 
 
@@ -539,6 +648,7 @@ def addCertificate(request):
 #     else:
 #         context = {'form': form}
 #         return render(request, "tender.html", context)
+
 
 @login_required
 def sendEmail(request):
@@ -695,6 +805,7 @@ def tenderCategory(request):
     context = {'form': form, 'sentmails': sentmails, 'providers': providers}
     return render(request, "tender_category.html", context)
 
+
 @login_required
 def getProviderEmails(request, *args, **kwargs):
     selected_cat = kwargs.get('category')
@@ -756,6 +867,7 @@ def getProviderEmailsSub(request, *args, **kwargs):
     return JsonResponse({'data': obj_models})
 
 # -------------------(SEND To Consultants) -------------------
+
 
 @login_required
 def tenderConsultant(request):

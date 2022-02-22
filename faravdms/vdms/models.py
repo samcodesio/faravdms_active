@@ -277,6 +277,12 @@ class ProviderInfo(models.Model):
     def __str__(self):
         return self.company_name
     
+    def get_categories(self):
+        return "\n".join([b.category_name for b in self.category.all()])
+    
+    def get_subcategories(self):
+        return "\n".join([s.sub_category_name for s in self.sub_categories.all()])
+    
     # def clean(self, *args, **kwargs):
     #     if self.category.count() > 2:
     #         raise ValidationError("You can't assign more than two categories")

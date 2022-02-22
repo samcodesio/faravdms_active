@@ -57,14 +57,10 @@
               </div>
             </div>
             {% comment %} FORMS {% endcomment %}
-            {% comment %} <form method="get"> {% endcomment %}
-              {% comment %} {% for subcategory in provider.sub_categories.all%} {% endcomment %}
-              {% comment %} {% if subcategory.category.category_name == "Goods"%} {% endcomment %}
-                {% comment %} {{myFilter.form.sub_categories}} {% endcomment %}
-              {% comment %} {% endif %} {% endcomment %}
-              {% comment %} {% endfor %} {% endcomment %}
-              {% comment %} <button class="btn btn-primary" type="submit">Search</button> {% endcomment %}
-            {% comment %} </form> {% endcomment %}
+            <form method="get">
+                {{myFilter.form}}
+              <button class="btn btn-primary" type="submit">Search</button>
+            </form>
             {% comment %} FORMS {% endcomment %}
             <div class="card mb-4">
               <div class="card-header">
